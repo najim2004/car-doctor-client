@@ -4,6 +4,8 @@ import OurProducts from "./OurProducts/OurProducts";
 import OurService from "./OurService/OurService";
 import OurTeam from "./OurTeam/OurTeam";
 import Slider from "./Slider/Slider";
+import Testimonial from "./Testimonial/Testimonial";
+import WhyChooseUs from "./WhyChooseUs/WhyChooseUs";
 
 const Home = () => {
   return (
@@ -13,9 +15,11 @@ const Home = () => {
       <OurService />
       <ContactDetails />
       <OurProducts />
-      <OurTeam/>
+      <OurTeam />
+      <WhyChooseUs />
+      <Testimonial />
     </div>
   );
-};  
+};
 
 export default Home;

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const OurService = () => {
   const [services, setService] = useState();
   useEffect(() => {
-    fetch("/services.json")
+    fetch("http://localhost:5000/our-services")
       .then((res) => res.json())
       .then((data) => setService(data))
       .catch((err) => console.log(err));
