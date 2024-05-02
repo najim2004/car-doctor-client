@@ -1,5 +1,7 @@
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
-
+import mamber1 from "../../../assets/images/team/1.jpg";
+import mamber2 from "../../../assets/images/team/2.jpg";
+import mamber3 from "../../../assets/images/team/3.jpg";
 const OurTeam = () => {
   return (
     <div className="mt-[100px] max-w-[1140px] mx-auto">
@@ -15,7 +17,49 @@ const OurTeam = () => {
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         <div className="rounded-[10px] p-6 border-[1px] text-center border-[#E8E8E8]">
           <div className="w-full h-[293px] flex items-center justify-center rounded-[10px] bg-gray-200">
-            <img className="h-[293px] rounded-[10px] w-full" src="" alt="" />
+            <img
+              className="h-[293px] rounded-[10px] w-full"
+              src={mamber1}
+              alt=""
+            />
+          </div>
+          <h3 className="text-2xl font-bold mt-5 mb-2 ">Car Engine Plug</h3>
+          <h3 className="text-[#737373] mb-3 mx-auto text-center text-xl font-semibold">
+            Car Engine Plug
+          </h3>
+          <div className="flex gap-3 text-3xl justify-center">
+            <FaFacebook className="text-blue-900" />
+            <FaTwitter className="text-blue-400" />
+            <FaLinkedin className="text-blue-600" />
+            <FaInstagram className="text-orange-700" />
+          </div>
+        </div>
+        <div className="rounded-[10px] p-6 border-[1px] text-center border-[#E8E8E8]">
+          <div className="w-full h-[293px] flex items-center justify-center rounded-[10px] bg-gray-200">
+            <img
+              className="h-[293px] rounded-[10px] w-full"
+              src={mamber2}
+              alt=""
+            />
+          </div>
+          <h3 className="text-2xl font-bold mt-5 mb-2 ">Car Engine Plug</h3>
+          <h3 className="text-[#737373] mb-3 mx-auto text-center text-xl font-semibold">
+            Car Engine Plug
+          </h3>
+          <div className="flex gap-3 text-3xl justify-center">
+            <FaFacebook className="text-blue-900" />
+            <FaTwitter className="text-blue-400" />
+            <FaLinkedin className="text-blue-600" />
+            <FaInstagram className="text-orange-700" />
+          </div>
+        </div>
+        <div className="rounded-[10px] p-6 border-[1px] text-center border-[#E8E8E8]">
+          <div className="w-full h-[293px] flex items-center justify-center rounded-[10px] bg-gray-200">
+            <img
+              className="h-[293px] rounded-[10px] w-full"
+              src={mamber3}
+              alt=""
+            />
           </div>
           <h3 className="text-2xl font-bold mt-5 mb-2 ">Car Engine Plug</h3>
           <h3 className="text-[#737373] mb-3 mx-auto text-center text-xl font-semibold">
