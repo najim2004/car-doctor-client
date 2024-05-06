@@ -1,20 +1,35 @@
 import { useContext } from "react";
 import { AuthData } from "../../Context/AuthProvider";
 import banner from "../../assets/images/checkout/checkout.png";
+import { useLoaderData } from "react-router-dom";
+import axios from "axios";
 
-const AddService = () => {
+const CheckOut = () => {
+  const service = useLoaderData();
   const { user, sweetAlert } = useContext(AuthData);
 
+  console.log(service);
   const handleAddCraft = (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = {
-      servicename: form.servicename.value,
-      serviceimage: form.serviceimage.value,
-      serviceprice: form.serviceprice.value,
-      servicetype: form.servicetype.value,
+      first_name: form.first_name.value,
+      date: form.date.value,
+      number: form.number.value,
+      email: form.email.value,
       description: form.description.value,
+      price: service?.price,
+      user_email: user?.email,
+      title: service?.title,
     };
+    axios
+      .post("http://localhost:5000/bookings", formData)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <div className="max-w-[1140px] mx-auto">
@@ -24,9 +39,9 @@ const AddService = () => {
           background: `linear-gradient(90deg, #151515 0%, rgba(21, 21, 21, 0.00) 100%), url(${banner})`,
         }}
       >
-        <h3 className="text-[45px] text-white font-bold">Add New Service</h3>
+        <h3 className="text-[45px] text-white font-bold">Check Out</h3>
         <div className="h-12 w-[300px] bg-cRed flex justify-center items-center absolute bottom-0 left-1/2 -translate-x-[50%]">
-          <h3 className="text-white text-xl font-medium">Home/Service</h3>
+          <h3 className="text-white text-xl font-medium">Home/Check Out</h3>
         </div>
       </div>
       <div className="mt-[100px] bg-[#F3F3F3] p-[97px]">
@@ -38,38 +53,42 @@ const AddService = () => {
             <input
               className="h-12 p-[11px] mt-4 w-full bg-white rounded-[5px]"
               type="text"
-              name="servicename"
-              placeholder="Service Name"
+              name="first_name"
+              placeholder="First Name"
+              required
             />
           </div>
 
           <div className="">
             <input
               className="h-12 p-[11px] mt-4 w-full bg-white rounded-[5px]"
-              type="text"
-              name="serviceimage"
-              placeholder="Service Image"
+              type="date"
+              name="date"
+              required
             />
           </div>
           <div className="">
             <input
               className="h-12 p-[11px] mt-4 w-full bg-white rounded-[5px]"
               type="number"
-              name="serviceprice"
-              placeholder="Service Price"
+              name="number"
+              placeholder="Your Phone"
+              required
             />
           </div>
           <div className="">
             <input
               className="h-12 w-full p-[11px] mt-4 bg-white rounded-[5px]"
-              type="text"
-              name="servicetype"
-              placeholder="Service Type"
+              type="email"
+              name="email"
+              value={user?.email}
+              disabled
+              placeholder="Your Email"
             />
           </div>
           <div className="lg:col-span-2">
             <textarea
-              placeholder="Product Description"
+              placeholder="Your Message"
               className="h-[250px] w-full p-[11px] mt-4 bg-white rounded-[5px]"
               name="description"
               id=""
@@ -82,7 +101,7 @@ const AddService = () => {
             className="h-12 lg:col-span-2 btn btn-sm !font-normal font-rancho text-2xl text-white bg-cRed w-full  rounded-[5px]"
             type="submit"
             name=""
-            value="Submit"
+            value="Add"
           />
         </form>
       </div>
@@ -90,4 +109,4 @@ const AddService = () => {
   );
 };
 
-export default AddService;
+export default CheckOut;
