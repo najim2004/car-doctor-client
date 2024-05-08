@@ -5,7 +5,7 @@ import axios from "axios";
 import { useState } from "react";
 const Booking = () => {
   const bookingsData = useLoaderData();
-  const [bookings, setBookings] = useState(bookingsData);
+  const [bookings, setBookings] = useState(bookingsData.data);
   const handleDelate = (id) => {
     axios
       .delete(`http://localhost:5000/bookings/${id}`)

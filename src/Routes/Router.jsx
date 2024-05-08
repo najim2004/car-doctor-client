@@ -8,6 +8,7 @@ import Register from "../Pages/Register/Register";
 import PrivateRoute from "./PrivateRouter";
 import CheckOut from "../Pages/CheckOut/CheckOut";
 import Booking from "../Pages/Booking/Booking";
+import axios from "axios";
 
 const router = createBrowserRouter([
   {
@@ -47,7 +48,9 @@ const router = createBrowserRouter([
       {
         path: "/bookings/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/bookings?email=${params.id}`),
+          axios.get(`http://localhost:5000/bookings?email=${params.id}`, {
+            withCredentials: true,
+          }),
         element: (
           <PrivateRoute>
             <Booking />
