@@ -1,18 +1,35 @@
-import { useLoaderData } from "react-router-dom";
 import banner from "../../assets/images/checkout/checkout.png";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthData } from "../../Context/AuthProvider";
+import useAxiosSecure from "../../Conponent/useAxiosSecure";
 const Booking = () => {
-  const bookingsData = useLoaderData();
-  const [bookings, setBookings] = useState(bookingsData.data);
+  const [bookings, setBookings] = useState([]);
+  const axiosSecure = useAxiosSecure();
+  const { user } = useContext(AuthData);
+  // const url = `http://localhost:5000/bookings?email=${user?.email}`;
+  const url = `/bookings?email=${user?.email}`;
+  useEffect(() => {
+    axiosSecure.get(url).then((response) => {
+      setBookings(response.data);
+    });
+    // axios
+    //   .get(url, {
+    //     withCredentials: true,
+    //   })
+    //   .then((response) => {
+    //     setBookings(response.data);
+    //   });
+  }, [url, axiosSecure]);
+  console.log(bookings);
   const handleDelate = (id) => {
     axios
       .delete(`http://localhost:5000/bookings/${id}`)
       .then((res) => {
         console.log(res);
         if (res.data.deletedCount > 0) {
-          setBookings(bookingsData.filter((bookings) => bookings._id !== id));
+          setBookings(bookings.filter((bookings) => bookings._id !== id));
         }
       })
       .catch((err) => {

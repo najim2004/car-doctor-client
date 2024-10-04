@@ -71,27 +71,27 @@ const Login = () => {
     const { Email, password } = data;
     loginUser(Email, password)
       .then((currentUser) => {
-        axios
-          .post(
-            "http://localhost:5000/jwt",
-            { Email },
-            { withCredentials: true }
-          )
-          .then((res) => {
-            if (res?.data?.success) {
-              sweetLoginAlert(
-                `Welcome Back "${currentUser?.user?.displayName?.toUpperCase()}"`,
-                1500
-              );
-              setTimeout(() => {
-                if (location?.state) {
-                  navigator(location.state);
-                } else {
-                  navigator("/");
-                }
-              }, 1500);
-            }
-          });
+        // axios
+        //   .post(
+        //     "http://localhost:5000/jwt",
+        //     { Email },
+        //     { withCredentials: true }
+        //   )
+        //   .then((res) => {
+        // if (res?.data?.success) {
+        sweetLoginAlert(
+          `Welcome Back "${currentUser?.user?.displayName?.toUpperCase()}"`,
+          1500
+        );
+        setTimeout(() => {
+          if (location?.state) {
+            navigator(location.state);
+          } else {
+            navigator("/");
+          }
+        }, 1500);
+        // }
+        // });
       })
       .catch((error) => {
         if (error.code === "auth/invalid-credential") {

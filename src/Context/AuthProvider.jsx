@@ -12,6 +12,7 @@ import { createContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../Firebase/Firebase.config";
+import axios from "axios";
 
 export const AuthData = createContext(null);
 
@@ -37,14 +38,30 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
+      const userEmail = currentUser?.email || user?.email;
+      const loggedInUser = { email: userEmail };
+      setUser(currentUser);
       if (currentUser) {
-        setUser(currentUser);
+        axios
+          .post("http://localhost:5000/jwt", loggedInUser, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log("token response", res.data);
+          });
       } else {
+        axios
+          .post("http://localhost:5000/logout", loggedInUser, {
+            withCredentials: "true",
+          })
+          .then((res) => {
+            console.log(res.data);
+          });
         setUser(null);
       }
       setLoading(false);
     });
-  }, []);
+  }, [user?.email]);
 
   const loginUser = (email, password) => {
     setLoading(true);

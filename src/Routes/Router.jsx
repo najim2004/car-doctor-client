@@ -46,11 +46,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/bookings/:id",
-        loader: ({ params }) =>
-          axios.get(`http://localhost:5000/bookings?email=${params.id}`, {
-            withCredentials: true,
-          }),
+        path: "/bookings",
         element: (
           <PrivateRoute>
             <Booking />

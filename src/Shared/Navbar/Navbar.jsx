@@ -22,7 +22,7 @@ const Navbar = () => {
         <NavLink to={"/add-services"}>Add new Services</NavLink>
       </li>
       <li>
-        <NavLink to={`/bookings/${user?.email}`}>Bookings</NavLink>
+        <NavLink to={`/bookings`}>Bookings</NavLink>
       </li>
       <li>
         <NavLink to={"/contact"}>Contact</NavLink>
